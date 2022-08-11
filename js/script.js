@@ -19,7 +19,7 @@ const quotes = [
     year: 2020
   },
   {
-    quote: 'Women belong in all places where decisionsare being made. It should not be that women are the exception.',
+    quote: 'Women belong in all places where decisions are being made. It should not be that women are the exception.',
     source: 'Ruth Bader Ginsburg',
     role: 'Judge',
     citation: 'Country Living',
@@ -81,8 +81,10 @@ function getRandomQuote() {
  * `printQuote` function
 ***/
 // printQuote function will call the getRandomQuotes function and print on page
+
 function printQuote() {
   let randomQuote = getRandomQuote(quotes);
+  //let backgroundColor= randomBackGround(colors);
   let html ="";
   html += "<p class = 'quote' >" + randomQuote.quote + "</p>";
   html += "<p class = 'source' >" + randomQuote.source ;
@@ -95,13 +97,29 @@ function printQuote() {
     html += "<span class = 'year'> "+ randomQuote.year + "</span>"
   }
   html+="</p>";
-
-  document.getElementById("quote-box").innerHTML=html;
+  const quoteBox =document.getElementById("quote-box");
+  const body =document.querySelector('body');// grabs the body element 
+  body.style.backgroundColor= randomBackGround();// updates the body color to a new background color
+  quoteBox.innerHTML=html;
+  document
 
   return html;
 }
 
- 
+//Extra credit 
+//auto refreshes the quotes using setInterval method every 10 seconds.
+setInterval(printQuote,10000)
+
+// a function  to get a random backgroundcolor
+var colors = ['purple', 'pink', 'fuscia', 'coral', 'rose', 'red'];
+function randomBackGround(){
+  let randomColor = Math.floor(Math.random()* colors.length)
+  for (let i = 0; i < colors.length; i++) {
+    let randomBack = colors[randomColor];
+    return randomBack;
+}
+}
+
 /***
  * click event listener for the print quote button
  * DO NOT CHANGE THE CODE BELOW!!
